@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\DataModel;
 class HomeController extends Controller
 {
     /**
@@ -22,6 +22,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $menu=new DataModel();
+
+        $leftmenu=$menu->getmenu();
+
+
+        return view('home',$leftmenu);
     }
 }
