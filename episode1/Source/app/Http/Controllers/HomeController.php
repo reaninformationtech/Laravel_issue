@@ -26,7 +26,6 @@ class HomeController extends Controller
 
         $leftmenu=$menu->getmenu();
 
-      //  dd($leftmenu);
 
         return view('home',$leftmenu);
     }
