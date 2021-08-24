@@ -1,0 +1,69 @@
+{
+    "name": "laravel/cashier",
+    "description": "Laravel Cashier provides an expressive, fluent interface to Stripe's subscription billing services.",
+    "keywords": ["laravel", "stripe", "billing"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/laravel/cashier/issues",
+        "source": "https://github.com/laravel/cashier"
+    },
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "dompdf/dompdf": "^0.8.6|^1.0.1",
+        "illuminate/console": "^8.0",
+        "illuminate/contracts": "^8.0",
+        "illuminate/database": "^8.0",
+        "illuminate/http": "^8.0",
+        "illuminate/log": "^8.0",
+        "illuminate/notifications": "^8.0",
+        "illuminate/routing": "^8.0",
+        "illuminate/support": "^8.0",
+        "illuminate/view": "^8.0",
+        "moneyphp/money": "^3.2",
+        "nesbot/carbon": "^2.0",
+        "stripe/stripe-php": "^7.39",
+        "symfony/http-kernel": "^5.0",
+        "symfony/polyfill-intl-icu": "^1.22.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "ext-intl": "Allows for more locales besides the default \"en\" when formatting money values."
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravel\\Cashier\\": "src/",
+            "Laravel\\Cashier\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laravel\\Cashier\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "13.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Laravel\\Cashier\\CashierServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
