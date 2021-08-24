@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
     $validators = IlluminateRoute::getValidators();
     $validators[] = new CaseInsensitiveUriValidator;
-    IlluminateRoute::$validators = array_filter($validators, function($validator) { 
+    IlluminateRoute::$validators = array_filter($validators, function($validator) {
     return get_class($validator) != UriValidator::class;
     });
 /* End Allow user can use URL lowercase or upper case  */
@@ -31,23 +31,23 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-// Route for sytem login 
+// Route for sytem login
 
 Route::middleware(['guest:admin','PreventBackHistory'])->group(function () {
-    Route::get('/register',[AdminController::class,'register'])->name('register'); 
-    Route::get('/login',[AdminController::class,'login'])->name('login'); 
-    Route::get('/forgot',[AdminController::class,'forgot'])->name('forgot');   
-    Route::post('/createuser',[AdminController::class,'registeruser'])->name('createuser'); 
-    Route::post('/userauth',[AdminController::class,'userauth'])->name('userauth'); 
+    Route::get('/register',[AdminController::class,'register'])->name('register');
+    Route::get('/login',[AdminController::class,'login'])->name('login');
+    Route::get('/forgot',[AdminController::class,'forgot'])->name('forgot');
+    Route::post('/createuser',[AdminController::class,'registeruser'])->name('createuser');
+    Route::post('/userauth',[AdminController::class,'userauth'])->name('userauth');
 
-    Route::get('/auto_permission',[AdminController::class,'auto_permission'])->name('auto_permission'); 
+    Route::get('/auto_permission',[AdminController::class,'auto_permission'])->name('auto_permission');
 
 
-}); 
+});
 
 Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
-    Route::get('/adminpage',[AdminController::class,'index'])->name('adminpage'); 
-    Route::get('/logout',[AdminController::class,'logout'])->name('logout'); 
+    Route::get('/adminpage',[AdminController::class,'index'])->name('adminpage');
+    Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
     //Route::get('/auto_permission', [App\Http\Controllers\AdminController::class, 'auto_permission'])->name('auto_permission');
     Route::post('/autocomplete/fetch', [PosController::class,'product_auto'])->name('autocomplete.fetch');
@@ -86,8 +86,8 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
 
 
     // setupbranch
-    Route::get('/setupbranch',[SettingController::class,'setupbranch'])->name('setupbranch'); 
-    Route::get('/setup-branch/{id}/branch_edit',[SettingController::class,'branch_edit'])->name('setup-branch.setupbranch_edit'); 
+    Route::get('/setupbranch',[SettingController::class,'setupbranch'])->name('setupbranch');
+    Route::get('/setup-branch/{id}/branch_edit',[SettingController::class,'branch_edit'])->name('setup-branch.setupbranch_edit');
     Route::post('/setup-branch/setupbranch_edit', [SettingController::class,'setupbranch_edit'])->name('setup-branch.setupbranch_edit');
     Route::get('/setupbranch/branch_fetch_data', [SettingController::class,'branch_fetch_data'])->name('branch_fetch_data');
 
@@ -104,12 +104,12 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     Route::get('/setup-profile/delete_profile/{id}',[SettingController::class,'delete_profile'])->name('delete_profile');
     Route::get('/setup-profile/{id}/profile_edit',[SettingController::class,'profile_edit'])->name('profile_edit');
     Route::get('/Admin/profile_fetch_data', [SettingController::class,'profile_fetch_data'])->name('profile_fetch_data');
-   
+
     // setuser_permission SettingController
     Route::get('/setuser_permission',[SettingController::class,'setuser_permission'])->name('setuser_permission');
     Route::get('/setuser-permission/permission_by_branch/{id}', [SettingController::class,'permission_by_branch'])->name('permission_by_branch');
     Route::post('/add_setuser_permission', [SettingController::class,'add_setuser_permission'])->name('setuser-permission.add_setuser_permission');
-    
+
 
     // set all_permission SettingController
     Route::get('/setup_permission',[SettingController::class,'setup_permission'])->name('setup_permission');
@@ -120,10 +120,10 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     // set userprofile SettingController
     Route::get('/userprofile',[SettingController::class,'userprofile'])->name('userprofile');
     Route::post('/userprofile/upload',[SettingController::class,'userprofileimage'])->name('userprofile.profileimage');
-    Route::post('setting/add_userprofile',[SettingController::class,'add_userprofile'])->name('setting.add_userprofile'); 
+    Route::post('setting/add_userprofile',[SettingController::class,'add_userprofile'])->name('setting.add_userprofile');
 
 
-    Route::post('setting/resetpassword',[SettingController::class,'resetpassword'])->name('setting.resetpassword'); 
+    Route::post('setting/resetpassword',[SettingController::class,'resetpassword'])->name('setting.resetpassword');
 
 
     // Add add_customer PosController
@@ -157,7 +157,7 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     Route::get('/product_instock',  [PosController::class,'product_instock'])->name('product_instock');
     Route::get('/get_instock', [PosController::class,'get_instock'])->name('get_instock');
     Route::get('/pos_in_stock_history/{id}', [PosController::class,'pos_in_stock_history'])->name('product_instock');
-    
+
     // POS PosController
     Route::get('/pos_pos', [PosController::class,'pos'])->name('pos_pos');
     Route::post('/insert', [PosController::class,'insert'] )->name('pos.insert');
@@ -218,7 +218,7 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     Route::get('/purchase-order/purchase_order_authorize/{id}', [PosController::class,'purchase_order_authorize'])->name('purchase_order');
 
 
-    /// Pos expense 
+    /// Pos expense
     Route::get('/pos_expense', [PosController::class,'pos_expense'])->name('pos_expense');
     Route::post('/pos/pos_add_expense', [PosController::class,'pos_add_expense'] )->name('pos.pos_add_expense');
     Route::get('/pos_expense_list/{search}', [PosController::class,'pos_expense_list'] )->name('pos_expense');
@@ -227,7 +227,7 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     Route::get('/pos_delete_expense', [PosController::class,'pos_delete_expense'])->name('pos_delete_expense');
 
 
-    /// Pos expense 
+    /// Pos expense
     Route::get('/pos_income', [PosController::class,'pos_income'])->name('pos_income');
     Route::post('/pos/pos_add_income', [PosController::class,'pos_add_income'] )->name('pos.pos_add_income');
     Route::get('/pos_income_list/{search}', [PosController::class,'pos_income_list'])->name('pos_income');
@@ -243,7 +243,7 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     Route::get('/pos-line/delete_pos_line/{id}', [PosController::class,'delete_pos_line'])->name('delete_pos_line');
 
 
-    // POS get report 
+    // POS get report
     Route::get('/rpt_pos_product_in_stock', [Pos_ReportController::class,'pos_report'])->name('rpt_pos_product_in_stock');
     Route::post('/rpt_get_pos_product_in_stock',[Pos_ReportController::class,'rpt_get_pos_product_in_stock'])->name('pos_report.rpt_get_pos_product_in_stock');
 
@@ -328,7 +328,7 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     Route::get('/img_userprofile/{filename}', [SettingController::class,'img_userprofile'] )->name('img_userprofile');
     Route::get('/id_img_userprofile/{userid}', [SettingController::class,'id_img_userprofile'] )->name('id_img_userprofile');
 
-    
+
 
     Route::get('/quote', [PostController::class,'quote'])->name('quote');
     Route::post('/quote-add/add_quote', [PostController::class,'add_quote'])->name('quote.add_quote');
@@ -350,4 +350,4 @@ Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
     Route::get('/combo_price/{id}', [ComboController::class,'combo_price'])->name('combo_price');
     Route::get('/combo_expend/{type}', [ComboController::class,'combo_expend'])->name('combo_expend');
 
-});  
+});
